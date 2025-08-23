@@ -35,8 +35,8 @@ PAGE_ITEMS_INFO = [
     'models/userInfo/data/isKids',
     'models/userInfo/data/pinEnabled',
     'models/serverDefs/data/BUILD_IDENTIFIER',
-    'models/esnGeneratorModel/data/esn',
-    'models/memberContext/data/geo/preferredLocale',
+    'models/esnAccessor/data/esn',
+    'models/geo/data/preferredLocale',
     'models/truths/data/isAdsPlan'
 ]
 
