@@ -8,14 +8,14 @@
     SPDX-License-Identifier: MIT
     See LICENSES/MIT.md for more information.
 """
-from .ipc import *
-from .videoid import *
-from .credentials import *
-from .fileops import *
-from .kodi_ops import *
-from .kodi_library_ops import *
-from .pathops import *
-from .device_utils import *
-from .misc_utils import *
-from .data_conversion import *
-from .uuid_device import *
+from resources.lib.common.ipc import *
+from resources.lib.common.videoid import *
+from resources.lib.common.credentials import *
+from resources.lib.common.fileops import *
+from resources.lib.common.kodi_ops import *
+from resources.lib.common.kodi_library_ops import *
+from resources.lib.common.pathops import *
+from resources.lib.common.device_utils import *
+from resources.lib.common.misc_utils import *
+from resources.lib.common.data_conversion import *
+from resources.lib.common.uuid_device import *

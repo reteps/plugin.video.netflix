@@ -40,6 +40,7 @@ def select_unused_port():
 def get_system_platform():
     if not hasattr(get_system_platform, 'cached'):
         platform = "unknown"
+        return 'system.platform.osx'
         if xbmc.getCondVisibility('system.platform.linux') and not xbmc.getCondVisibility('system.platform.android'):
             platform = "linux"
         elif xbmc.getCondVisibility('system.platform.linux') and xbmc.getCondVisibility('system.platform.android'):

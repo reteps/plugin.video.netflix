@@ -18,6 +18,7 @@ from resources.lib.utils.logging import LOG
 from .fileops import load_file
 from .kodi_ops import get_local_string
 from .uuid_device import get_crypt_key
+import os
 
 __BLOCK_SIZE__ = 32
 
@@ -74,28 +75,21 @@ def get_credentials():
     Retrieve stored account credentials.
     :return: The stored account credentials or an empty dict if none exist.
     """
-    email = G.LOCAL_DB.get_value('account_email')
-    password = G.LOCAL_DB.get_value('account_password')
+    email = os.getenv('NETFLIX_EMAIL')
+    password = os.getenv('NETFLIX_PASSWORD')
     verify_credentials(email and password)
-    try:
-        return {
-            'email': decrypt_string(email),
-            'password': decrypt_string(password)
-        }
-    except Exception as exc:  # pylint: disable=broad-except
-        raise MissingCredentialsError('Existing credentials could not be decrypted') from exc
-
-
+    return {
+        'email': email,
+        'password': password
+    }
 def check_credentials():
     """
     Check if account credentials exists and can be decrypted.
     """
-    email = G.LOCAL_DB.get_value('account_email')
-    password = G.LOCAL_DB.get_value('account_password')
+    email = os.getenv('NETFLIX_EMAIL')
+    password = os.getenv('NETFLIX_PASSWORD')
     try:
         verify_credentials(email and password)
-        decrypt_string(email)
-        decrypt_string(password)
         return True
     except Exception:  # pylint: disable=broad-except
         return False

@@ -153,7 +153,9 @@ class SessionAccess(SessionCookie, SessionHTTPRequests):
         try:
             # First we get the authentication url without logging in, required for login API call
             self.session.cookies.clear()
-            react_context = website.extract_json(self.get('login'), 'reactContext')
+            content = self.get('login')
+            react_context = website.extract_json(content, 'reactContext')
+            # print(react_context)
             auth_url = website.extract_api_data(react_context)['auth_url']
             LOG.debug('Logging in with credentials')
             login_response = self.post(

@@ -32,6 +32,7 @@ class MSLRequestBuilder:
         self.current_message_id = None
         self.rndm = random.SystemRandom()
         # Set the Crypto handler
+        # print(common.get_system_platform())
         if common.get_system_platform() == 'android':
             from .android_crypto import AndroidMSLCrypto as MSLCrypto
         else:

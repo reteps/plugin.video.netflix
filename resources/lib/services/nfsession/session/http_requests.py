@@ -60,6 +60,7 @@ class SessionHTTPRequests(SessionBase):
                 LOG.debug('Executing {verb} request to {url}', verb=method, url=url)
                 start = time.perf_counter()
                 if method == 'GET':
+                    # print(headers)
                     response = self.session.get(
                         url=url,
                         headers=headers,
@@ -155,7 +156,8 @@ class SessionHTTPRequests(SessionBase):
         custom_params = kwargs.get('params', {})
         params = {}
 
-        headers = {'Accept': endpoint_conf.get('accept', '*/*')}
+        headers = {'Accept': endpoint_conf.get('accept', '*/*'),
+                   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'}
         if endpoint_conf['address'] not in ['/login', '/browse', '/SignOut', '/YourAccount']:
             headers['x-netflix.nq.stack'] = 'prod'
             headers['x-netflix.request.client.user.guid'] = G.LOCAL_DB.get_active_profile_guid()

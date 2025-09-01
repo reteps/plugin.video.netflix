@@ -57,6 +57,9 @@ PAGE_ITEM_ERROR_CODE = 'models/flow/data/fields/errorCode/value'
 PAGE_ITEM_ERROR_CODE_LIST = 'models\\i18nStrings\\data\\login/login'
 
 JSON_REGEX = r'netflix\.{}\s*=\s*(.*?);\s*</script>'
+# JSON_REGEX = r'^.*netflix\.{}\s*=\s*(.*?);\s*</script>.*$'
+
+
 AVATAR_SUBPATH = ['images', 'byWidth', '320']
 
 PROFILE_DEBUG_INFO = ['isAccountOwner', 'isActive', 'isKids', 'maturityLevel', 'language']
@@ -254,8 +257,12 @@ def assert_valid_auth_url(user_data):
 def validate_login(react_context):
     path_code_list = PAGE_ITEM_ERROR_CODE_LIST.split('\\')
     path_error_code = PAGE_ITEM_ERROR_CODE.split('/')
+    # print(react_context)
+    with open('react_context.json', 'w') as f:
+        json.dump(react_context, f, indent=2)
     if common.check_path_exists(path_error_code, react_context):
         # If the path exists, a login error occurs
+        print('LOGIN ERROR OCCURRED')
         try:
             error_code_list = common.get_path(path_code_list, react_context)
             error_code = common.get_path(path_error_code, react_context)
